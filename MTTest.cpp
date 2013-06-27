@@ -1,14 +1,15 @@
 #include <RandomLib/Random.hpp>
-#include <cstdlib>
 #include <iostream>
 #include <cmath>
-#include <time.h>
+#include <ctime>
 using namespace std;
 int main() {
 	cout << "Hello, World!" << endl;
 	RandomLib::Random r;
-	srand (time(NULL));
-	unsigned int seed = rand()%100;
-	r.Seed(seed);
+	r.Reseed();
 	cout << "Using " << r.Name() << " with seed " << r.SeedString() << endl;
+	for (int i = 0; i < 1000; i++)
+	{
+		cout << r.FloatN() << endl;
+	}
 }

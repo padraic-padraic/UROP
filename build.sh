@@ -2,12 +2,12 @@
 echo "Moving in."
 cd /home/padraic/Projects/UROP
 echo "Cleaning up"
-rm ./ MTTest
+rm ./MTTest
 rm ./MTTest.o
 echo "Step 1"
-g++ -c -g -O3 MTTest.cpp -I/usr/local/include
+g++ -c -g -O3 MTTest.cpp -I /usr/local/include
 echo "Step 2"
-g++ -g -o MTTest MTTest.o -L /usr/local/lib -lRandom
+g++ -g -o MTTest MTTest.o -L /usr/local/lib -l Random
 echo "Step 3"
-g++ -g -o MTTest MTTest.o -L /usr/local/lib -lRandom
+g++ -g -o MTTest MTTest.o -Wl,-rpath=/usr/local/lib -L/usr/local/lib -lRandom
 echo "Built!"
