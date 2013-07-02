@@ -5,10 +5,10 @@
 using namespace std;
 int main() {
 	RandomLib::Random r;
-	double g = 3.6, x_n, x_n1, sum = 0, sum2 = 0, t = 0;
+	double g = 3.75, x_n, x_n1, sum = 0, sum2 = 0, t = 0;
 	r.Reseed();
 	x_n = r.IntegerC(1, 10) / 1000;
-	ofstream outfile("Stoch3.6.txt");
+	ofstream outfile("Stoch3.75.txt");
 	for (t; t < 20000; t++) {
 		if (r.FixedN() > g*x_n) {
 			x_n += 0.001;
@@ -26,9 +26,10 @@ int main() {
 	cout << "The Variance is " << m2 - (m1*m1) << endl;
 	cout << "The value of g is " << g << endl;
 	cout << "Mean calculations...." << endl;
-	sum = sum2 = 0;
 	ofstream outfile2("Stochmean.txt");
 	for (g = 0.1; g < 4.1; g += 0.1) {
+		sum = 0;
+		sum2 = 0;
 		for (int i = 0; i < 1000; i++){
 			if (r.FixedN() > g*x_n) {
 				x_n += 0.001;
