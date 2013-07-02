@@ -5,10 +5,10 @@
 using namespace std;
 int main() {
 	RandomLib::Random r;
-	double g = 3.6, x_n, x_n1, sum = 0, sum2 = 0, t = 0;
+	double g = 3.75, x_n, x_n1, sum = 0, sum2 = 0, t = 0;
 	r.Reseed();
-	x_n = r.IntegerC(1, 10) / 1000;
-	ofstream outfile("Stoch3.6.txt");
+	x_n = r.FixedN() / 100;
+	ofstream outfile("Stoch3.75.txt");
 	for (t; t < 20000; t++) {
 		if (r.FixedN() > g*x_n) {
 			x_n += 0.001;
@@ -28,8 +28,8 @@ int main() {
 	cout << "Mean calculations...." << endl;
 	ofstream outfile2("Stochmean.txt");
 	for (g = 0.1; g < 6.1; g += 0.1) {
-		x_n = r.IntegerC(1, 10) / 1000;
-		cout << x_n << endl;
+		x_n = r.FixedN() / 100; 
+		//cout << x_n << endl;
 		sum = 0;
 		sum2 = 0;
 		for (int i = 0; i < 1000; i++){
