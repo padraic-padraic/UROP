@@ -10,11 +10,10 @@ int main() {
 	x_n = r.IntegerC(1, 10) / 1000;
 	ofstream outfile("Stoch3.6.txt");
 	for (t; t < 20000; t++) {
-		double random = r.FixedN();
-		if (random > g*x_n) {
+		if (r.FixedN() > g*x_n) {
 			x_n += 0.001;
 		}
-		if (random < g*(x_n*x_n)) {
+		if (r.FixedN() < g*(x_n*x_n)) {
 			x_n -= 0.001;
 		}
 		outfile << t << "\t" << x_n << endl;
@@ -28,16 +27,16 @@ int main() {
 	cout << "The value of g is " << g << endl;
 	cout << "Mean calculations...." << endl;
 	ofstream outfile2("Stochmean.txt");
-	for (g = 0.1; g < 4.1; g += 0.1) {
+	for (g = 0.1; g < 6.1; g += 0.1) {
 		x_n = r.IntegerC(1, 10) / 1000;
+		cout << x_n << endl;
 		sum = 0;
 		sum2 = 0;
 		for (int i = 0; i < 1000; i++){
-			double random = r.FixedN();
-			if (random > g*x_n) {
+			if (r.FixedN() > g*x_n) {
 				x_n += 0.001;
 			}
-			if (random < g*(x_n*x_n)) {
+			if (r.FixedN() < g*(x_n*x_n)) { // Should test random or Random squared? Same or different random number?
 				x_n -= 0.001;
 			}
 			sum += x_n;
