@@ -20,7 +20,7 @@ void dynamic(int p, double r) {
 			delta0 = x2_n - x_n;
 			cout << r << endl;
 			cout << delta0 << endl;
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < 300; i++) {
 				//outfile << i << "\t" << x_n << endl;
 				x_n1 = r*x_n*(1-x_n);
 				x2_n1 = r*x2_n*(1- x2_n);
@@ -43,7 +43,7 @@ void dynamic(int p, double r) {
 					break;
 				}
 				if (i > 500) {
-					orbit << r << x_n << x_n1 << endl;
+					orbit << r << "\t" << x_n << "\t" << x_n1 << endl;
 					//cout << "orbit out" << endl;
 				}
 				x_n = x_n1;

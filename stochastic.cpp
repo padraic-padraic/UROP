@@ -5,15 +5,16 @@
 using namespace std;
 int main() {
 	RandomLib::Random r;
-	double g = 3.75, x_n, x_n1, sum = 0, sum2 = 0, t = 0;
+	double g = 3.75, x_n, x_n1, sum = 0, sum2 = 0, t = 0, random;
 	r.Reseed();
 	x_n = r.FixedN() / 100;
 	ofstream outfile("Stoch3.75.txt");
-	for (t; t < 20000; t++) {
-		if (r.FixedN() > g*x_n) {
+	for (t; t < 1000; t++) {
+		random = r.FixedN();
+		if (random > g*x_n) {
 			x_n += 0.001;
 		}
-		if (r.FixedN() < g*(x_n*x_n)) {
+		if (random < g*(x_n*x_n)) {
 			x_n -= 0.001;
 		}
 		outfile << t << "\t" << x_n << endl;
@@ -33,10 +34,11 @@ int main() {
 		sum = 0;
 		sum2 = 0;
 		for (int i = 0; i < 1000; i++){
-			if (r.FixedN() > g*x_n) {
+			random = r.FixedN();
+			if (random > g*x_n) {
 				x_n += 0.001;
 			}
-			if (r.FixedN() < g*(x_n*x_n)) { // Should test random or Random squared? Same or different random number?
+			if (random < g*(x_n*x_n)) { // Should test random or Random squared? Same or different random number?
 				x_n -= 0.001;
 			}
 			sum += x_n;
