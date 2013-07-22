@@ -5,15 +5,15 @@
 using namespace std;
 int main() {
 	RandomLib::Random r;
-	double g = 3.75, x_n, x_n1, sum = 0, sum2 = 0, t = 0, random;
+	double g = 3.57, x_n, x_n1, sum = 0, sum2 = 0, t = 0, random;
 	r.Reseed();
 	x_n = r.FixedN() / 100;
-	ofstream outfile("Stoch3.75.txt");
+	ofstream outfile("Stoch3.57.txt");
 	for (t; t < 20000; t++) {
-		if (r.fixedN()< g*x_n) {
+		if (r.FixedN()< g*x_n) {
 			x_n += 0.001;
 		}
-		if (r.fixedN() < g*(x_n*x_n)) {
+		if (r.FixedN() < g*(x_n*x_n)) {
 			x_n -= 0.001;
 		}
 		outfile << t << "\t" << x_n << endl;
@@ -27,13 +27,13 @@ int main() {
 	cout << "The value of g is " << g << endl;
 	cout << "Mean calculations...." << endl;
 	ofstream outfile2("Stochmean.txt");
-	for (g = 0.1; g < 6.1; g += 0.1) {
+	for (g = 0.1; g < 4.5; g += 0.01) {
 		x_n = r.FixedN() / 100; 
 		//cout << x_n << endl;
 		sum = 0;
 		sum2 = 0;
 		for (int i = 0; i < 20000; i++){
-			if (r.fixedN() < g*x_n) {
+			if (r.FixedN() < g*x_n) {
 				x_n += 0.001;
 			}
 			if (r.FixedN() < g*(x_n*x_n)) { // Should test random or Random squared? Same or different random number?
