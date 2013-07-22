@@ -10,11 +10,10 @@ int main() {
 	x_n = r.FixedN() / 100;
 	ofstream outfile("Stoch3.75.txt");
 	for (t; t < 1000; t++) {
-		random = r.FixedN();
-		if (random < g*x_n) {
+		if (r.fixedN()< g*x_n) {
 			x_n += 0.001;
 		}
-		if (random < g*(x_n*x_n)) {
+		if (r.fixedN() < g*(x_n*x_n)) {
 			x_n -= 0.001;
 		}
 		outfile << t << "\t" << x_n << endl;
@@ -34,11 +33,10 @@ int main() {
 		sum = 0;
 		sum2 = 0;
 		for (int i = 0; i < 1000; i++){
-			random = r.FixedN();
-			if (random < g*x_n) {
+			if (r.fixedN() < g*x_n) {
 				x_n += 0.001;
 			}
-			if (random < g*(x_n*x_n)) { // Should test random or Random squared? Same or different random number?
+			if (r.FixedN() < g*(x_n*x_n)) { // Should test random or Random squared? Same or different random number?
 				x_n -= 0.001;
 			}
 			sum += x_n;
