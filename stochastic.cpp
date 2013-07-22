@@ -9,7 +9,7 @@ int main() {
 	r.Reseed();
 	x_n = r.FixedN() / 100;
 	ofstream outfile("Stoch3.75.txt");
-	for (t; t < 1000; t++) {
+	for (t; t < 20000; t++) {
 		if (r.fixedN()< g*x_n) {
 			x_n += 0.001;
 		}
@@ -32,7 +32,7 @@ int main() {
 		//cout << x_n << endl;
 		sum = 0;
 		sum2 = 0;
-		for (int i = 0; i < 1000; i++){
+		for (int i = 0; i < 20000; i++){
 			if (r.fixedN() < g*x_n) {
 				x_n += 0.001;
 			}
@@ -42,8 +42,8 @@ int main() {
 			sum += x_n;
 			sum2 += (x_n*x_n);
 		}
-		m1 = sum / (1000);
-		m2 = sum / (1000);
+		m1 = sum / (20000);
+		m2 = sum / (20000);
 		outfile2 << g << "\t" << m1 << "\t" << m2 - (m1*m1) << endl;
 		//cout << g << endl;
 	}
