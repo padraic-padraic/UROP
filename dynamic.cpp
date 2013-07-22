@@ -14,13 +14,13 @@ using namespace std;
 	ofstream orbit("orbit.txt");
 
 void dynamic(int p, double r) {
-	for (r; r < 4.2; r += 0.01) {
+	for (r; r < 4.5; r += 0.001) {
 			x_n = 0.1;
 			x2_n = 0.2 + (p*0.05);
 			delta0 = x2_n - x_n;
 			cout << r << endl;
 			cout << delta0 << endl;
-			for (int i = 0; i < 300; i++) {
+			for (int i = 0; i < 3000; i++) {
 				//outfile << i << "\t" << x_n << endl;
 				x_n1 = r*x_n*(1-x_n);
 				x2_n1 = r*x2_n*(1- x2_n);
@@ -52,7 +52,7 @@ void dynamic(int p, double r) {
 			loopcount++;
 			delta = x2_n - x_n;
 			cout << delta << endl;
-			long double lambda = log(delta / delta0) / 1000;
+			long double lambda = log(delta / delta0) / 3000;
 			Liapunov << r << "\t" << delta0 << "\t" << lambda << endl;
 			cout << "Liapunov is " << lambda << " for r " << r << " and delta init " << delta0 << endl;
 		}
