@@ -11,7 +11,7 @@ int main() {
 	ofstream outfile("Stoch3.75.txt");
 	for (t; t < 1000; t++) {
 		random = r.FixedN();
-		if (random > g*x_n) {
+		if (random < g*x_n) {
 			x_n += 0.001;
 		}
 		if (random < g*(x_n*x_n)) {
@@ -35,7 +35,7 @@ int main() {
 		sum2 = 0;
 		for (int i = 0; i < 1000; i++){
 			random = r.FixedN();
-			if (random > g*x_n) {
+			if (random < g*x_n) {
 				x_n += 0.001;
 			}
 			if (random < g*(x_n*x_n)) { // Should test random or Random squared? Same or different random number?
