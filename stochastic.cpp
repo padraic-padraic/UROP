@@ -13,7 +13,7 @@ int main() {
 		if (r.FixedN()< g*x_n) {
 			x_n += 0.001;
 		}
-		if (r.FixedN() < g*(x_n*x_n)) {
+		if (r.FixedN() < g*(1 - (x_n*x_n))) {
 			x_n -= 0.001;
 		}
 		outfile << t << "\t" << x_n << endl;
@@ -36,7 +36,7 @@ int main() {
 			if (r.FixedN() < g*x_n) {
 				x_n += 0.001;
 			}
-			if (r.FixedN() < g*(x_n*x_n)) { // Should test random or Random squared? Same or different random number?
+			if (r.FixedN() < g*(1 - (x_n*x_n)) { // Should test random or Random squared? Same or different random number?
 				x_n -= 0.001;
 			}
 			sum += x_n;
