@@ -34,9 +34,9 @@ while m < n:
 	p_b = pb(alpha, m+1)
 	p_c = pc(m+1)
 	p_d = pd(m+1)
-	print(p_b)
-	print(p_c)
-	print(p_d)
+	#print(p_b)
+	#print(p_c)
+	#print(p_d)
 	value += ( (1- p_b) * (1 - p_c) * (1 - p_d) )
 	value += ( p_b * p_c)
 	value += ( p_b * p_d)
@@ -44,5 +44,6 @@ while m < n:
 	value -= p_d
 	value -= p_c
 	value -= (p_b * p_c * p_d)
+	value = value / m
 	m += 1
 print(value)
