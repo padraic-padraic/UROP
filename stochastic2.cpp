@@ -57,7 +57,7 @@ int main() {
 			//cout << "calculating p_b" << endl; 
 			p_b = pow(alpha, m) * exp(-1 * alpha) / fact;
 			//cout << "calculating p_c" << endl;
-			p_c = 2.0 / (k * (1-m) );
+			p_c = 2.0 / (k * (1+m) );
 			//cout << "calculated p_c" << endl;
 			//cout << "calculating P_d" << endl;
 			p_d = exp(-1)/ fact;
