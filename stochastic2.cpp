@@ -4,17 +4,16 @@
 #include <cmath>
 
 using namespace std;
-double factorial (int n){
-	int i = 1, tot = 1;
-	do {
+double factorial(int n){
+	int tot = 1;
+	for (int i = 1; i < n+1; i++){
 		tot *= i;
-		i++;
-	} while (i < n);
+	}
 	return tot;
 }
 
 int main() {
-	ofstream test("stoch2.txt");
+	//ofstream test("stoch2.txt");
 	ofstream means("2mean.txt");
 	ofstream delta("deltamean.txt");
 	RandomLib::Random r;
@@ -22,19 +21,33 @@ int main() {
 	const int k = 500; // Carrying capacity
 	int x_n = 120, x_n1; // Initial value
 	int deltac, deltad, deltab; //Competition, Death and Birth changes per time-step
-	double alpha, beta = 3.57 * k;
+	double alpha, beta = 0.57 * k;
 	double p_b, p_c, p_d;
-	int n, m; // Counting variable
+	int n, m; // m is a uniform random variable between o and n at time t_n
+	double count = 0.0;
+	int loopcount;
 	double fact; //container for factorials
-	int sum = 0, sum_2 = 0, sumb = 0, sumc = 0, sumd = 0, sumb_2 = 0, sumc_2 = 0, sumd_2 = 0;
+	double sum, sum_2, sumb, sumc, sumd, sumb_2, sumc_2, sumd_2;
 	double mean, var, mb, mc, md, varb, varc, vard;
-	for (int count = 0; count < 500; count++) {
+	for (int loopcount = 0; loopcount < 2001; loopcount++) {
 		alpha = (beta/k) + (count/k);
 		cout << count << endl;
+		cout << alpha << endl;
+		sum = 0;
+		sum_2 = 0;
+		sumb = 0;
+		sumb_2 = 0;
+		sumc = 0;
+		sumc_2 = 0;
+		sumd = 0;
+		sumd_2 = 0;
+		x_n = 120;
 		for (int t = 0; t < 10000; t++) {
 			n = x_n;
+			sum += x_n;
+			sum_2 += pow(x_n, 2);
 			//cout << t << "\t" << x_n << endl;
-			test << t << "\t" << x_n << endl;
+			//test << t << "\t" << x_n << endl;
 			deltab = 0;
 			deltac = 0;
 			deltad = 0;
@@ -63,7 +76,7 @@ int main() {
 				}
 			}
 			else {
-				deltad = m;
+				deltac = m;
 			}
 			x_n1 = x_n + deltab - deltad - deltac;
 			x_n = x_n1;
@@ -73,18 +86,17 @@ int main() {
 			sumb_2 += (deltab * deltab);
 			sumc_2 += (deltac * deltac);
 			sumd_2 += (deltad * deltad);
-		}
-		sum += x_n;
-		sum_2 += (x_n * x_n);
-		mean = sum / 500;
-		var = (sum_2 / 500) - (mean*mean);
-		mc = sumc / 500;
-		varc = (sumc_2 / 500) - (mc*mc);
-		mb = sumb / 500;
-		varb = (sumb_2 / 500) - (mb*mb);
-		md = sumd / 500;
-		vard = (sumd_2 / 500) - (md*md);
+		} //After running for 10000 timesteps, means and variances are calculated for x and all deltas at a given alpha
+		mean = sum / 10000;
+		var = (sum_2 / 10000) - (mean*mean);
+		mc = sumc / 10000;
+		varc = (sumc_2 / 10000) - (mc*mc);
+		mb = sumb / 10000;
+		varb = (sumb_2 / 10000) - (mb*mb);
+		md = sumd / 10000;
+		vard = (sumd_2 / 10000) - (md*md);
 		means << alpha << "\t" << mean << "\t" << var << endl;
 		delta << alpha << "\t" << mb << "\t" << varb << "\t" << mc << "\t" << varc << "\t" << md << "\t" << vard << endl;
+		count += 1.0;
 	}
 }
